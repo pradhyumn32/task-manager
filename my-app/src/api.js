@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://task-manager-fb4l.onrender.com';
 
 export const signup = async (form) =>
   fetch(`${API_URL}/signup`, {
