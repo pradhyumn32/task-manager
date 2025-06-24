@@ -11,7 +11,17 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://task-manager-frontend-eym7.onrender.com'],
+  credentials: true
+}));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+
 
 app.use('/api', authRoutes);
 app.use('/api/tasks', taskRoutes);
