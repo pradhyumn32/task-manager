@@ -10,4 +10,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
   }
+  "scripts": {
+  "dev": "node server.js",
+  "migrate": "npx prisma migrate deploy"
+}
 }
