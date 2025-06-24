@@ -1,11 +1,21 @@
-const API_URL = 'https://task-manager-fb4l.onrender.com';
+const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000/api';
 
-export const signup = async (form) =>
-  fetch(`${API_URL}/signup`, {
+export const signup = async (userData) => {
+  const res = await fetch(`${API_URL}/signup`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(form)
-  }).then(res => res.json());
+    body: JSON.stringify(userData),
+  });
+
+  const text = await res.text(); // read full response
+  console.log('Signup response:', res.status, text);
+
+  if (!res.ok) throw new Error(`Signup failed (${res.status})`);
+  
+  return JSON.parse(text); // if successful, parse as JSON
+};
+
+
 
 export const login = async (form) =>
   fetch(`${API_URL}/login`, {
